@@ -1,0 +1,28 @@
+{%extends 'theme.html'%}
+
+
+
+{%block content%}
+<div class="container text-center border border-4 p-4 shadow">
+    <div class="row">
+        <div class="col-lg-6 col-12">
+            <img src="https://images.pexels.com/photos/4855376/pexels-photo-4855376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width="500px" height="400px" alt="" srcset="">
+        </div>
+        <div class="col-lg-6 col-12">
+            <h3 class="fst-italic">Add Customer</h3>
+              <form action="" method="post">
+                 {%csrf_token%}
+                  {{form.as_p}}
+                  <button class="btn btn-secondary" type="submit">Add</button>
+               </form>
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+
+{%endblock%}

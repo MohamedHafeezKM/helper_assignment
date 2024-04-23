@@ -1,0 +1,49 @@
+{%extends 'theme.html'%}
+
+
+
+{%block content%}
+<div class="container text-center border border-4 p-4 shadow">
+    <div class="row">
+        <h2>Assign Helpers to Customers</h2>
+        <div class="col-lg-6 col-12">
+            <img src="https://images.pexels.com/photos/4560083/pexels-photo-4560083.jpeg" width="500px" height="400px" alt="" srcset="">
+        </div>
+        <div class="col-lg-6 col-12">
+            {%for helper in all_helpers%}
+             <div class="card border-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">{{helper.gender}} {{helper.age}}</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{helper.name}} </h5>
+                  <p class="card-text">{{helper.skills}}</p>
+                </div>
+                <div class="card-footer">
+                    {% if helper.customer == None%}
+                    Available,
+                    Assign to
+                    <form  method="post">
+                        {%csrf_token%}
+                        <input type="text" hidden="true" name="helper" value="{{helper.id}}">
+                        <select name="assign" id="">
+                           
+                            {%for customer in available_customers%}
+                            <option value="{{customer.id}}">{{customer.name}}</option>
+                            {%endfor%}
+                        </select>
+                        <button class="btn btn-secondary" type="submit">Update</button>
+                    </form>
+                    {%else%}
+                    Customer:{{helper.customer}}
+                    {%endif%}
+                  </div>
+              </div>
+
+            {%endfor%}
+        </div>
+    </div>
+    
+
+</div>
+
+
+{%endblock%}
